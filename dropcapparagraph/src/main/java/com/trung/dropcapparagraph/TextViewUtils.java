@@ -1,5 +1,6 @@
 package com.trung.dropcapparagraph;
 
+import android.content.Context;
 import android.widget.TextView;
 
 /**
@@ -18,7 +19,12 @@ public final class TextViewUtils {
      * @return line spacing
      */
     public static float getLineSpacing(final TextView textView) {
-        return textView.getPaint().getFontSpacing() * textView.getLineSpacingMultiplier()
-                + textView.getLineSpacingExtra();
+        return pxToSp(textView.getContext(), textView.getPaint().getFontSpacing() * textView.getLineSpacingMultiplier()
+                + textView.getLineSpacingExtra());
+    }
+
+    private static float pxToSp(Context context, float px) {
+        float scaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        return px/scaledDensity;
     }
 }

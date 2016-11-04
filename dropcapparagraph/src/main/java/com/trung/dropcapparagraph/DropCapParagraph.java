@@ -9,6 +9,7 @@ import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -152,7 +153,13 @@ public class DropCapParagraph extends LinearLayout {
              */
             mText = a.getString(R.styleable.DropCapParagraph_dcp_text);
             mCollapsingMoreText = a.getString(R.styleable.DropCapParagraph_dcp_collapsing_more_text);
+            if (TextUtils.isEmpty(mCollapsingMoreText)) {
+                mCollapsingMoreText = getResources().getString(R.string.collapse);
+            }
             mExpandingMoreText = a.getString(R.styleable.DropCapParagraph_dcp_expanding_more_text);
+            if (TextUtils.isEmpty(mCollapsingMoreText)) {
+                mExpandingMoreText = getResources().getString(R.string.expand);
+            }
 
             /**
              * Drop Cap Lines
@@ -193,14 +200,17 @@ public class DropCapParagraph extends LinearLayout {
         if (mIsExpandable) {
             mBottomParagraph.setMaxLines(DEFAULT_MAX_LINES);
             collapse(DEFAULT_MAX_LINES);
-            mReadMore.setOnClickListener(v -> {
-                if (mBottomParagraph.getLineCount() <= DEFAULT_MAX_LINES) {
-                    return;
-                }
-                if (mIsExpanded) {
-                    collapse(DEFAULT_MAX_LINES);
-                } else {
-                    expand();
+            mReadMore.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (mBottomParagraph.getLineCount() <= DEFAULT_MAX_LINES) {
+                        return;
+                    }
+                    if (mIsExpanded) {
+                        collapse(DEFAULT_MAX_LINES);
+                    } else {
+                        expand();
+                    }
                 }
             });
         }
@@ -266,9 +276,8 @@ public class DropCapParagraph extends LinearLayout {
         mRightParagraph.setTextSize(TypedValue.COMPLEX_UNIT_SP, mParagraphTextSize);
         mBottomParagraph.setTextSize(TypedValue.COMPLEX_UNIT_SP, mParagraphTextSize);
 
-        mDropCapCharacter.setTextSize(
-                (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, mParagraphTextSize, mMetrics) * mDropCapLines
-                        + TextViewUtils.getLineSpacing(mRightParagraph) * (mDropCapLines - 1));
+        mDropCapCharacter.setTextSize(TypedValue.COMPLEX_UNIT_SP, mParagraphTextSize * mDropCapLines
+                + TextViewUtils.getLineSpacing(mRightParagraph) * (mDropCapLines - 1));
 
         mReadMore.setTextSize(TypedValue.COMPLEX_UNIT_SP, mParagraphTextSize);
     }
@@ -285,14 +294,16 @@ public class DropCapParagraph extends LinearLayout {
 
 //            mRightParagraph.setText(twoLines);
             mBottomParagraph.setText(remainder);
-            mBottomParagraph.post(() -> {
-                if (mBottomParagraph.getLineCount() > DEFAULT_MAX_LINES) {
-                    mReadMore.setVisibility(VISIBLE);
-                } else {
-                    mReadMore.setVisibility(GONE);
+            mBottomParagraph.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (mBottomParagraph.getLineCount() > DEFAULT_MAX_LINES) {
+                        mReadMore.setVisibility(VISIBLE);
+                    } else {
+                        mReadMore.setVisibility(GONE);
+                    }
                 }
             });
         }
-
     }
 }

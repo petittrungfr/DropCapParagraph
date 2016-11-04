@@ -1,4 +1,4 @@
-package com.trung.dropcapparagraph;
+package com.trung.dropcapparagraph.sample;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

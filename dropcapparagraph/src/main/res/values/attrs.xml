@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <declare-styleable name="FontCompatTextView">
+        <attr name="fctv_typeface" format="string" />
+    </declare-styleable>
+
     <declare-styleable name="BottomAlignedCompatTextView">
         <attr name="bacptv_is_uppercase" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="DropCapParagraph">
         <attr name="dcp_text" format="string" />
-        <attr name="dcp_first_character_color" format="color|reference" />
-        <attr name="dcp_paragraph_color" format="color|reference" />
+        <attr name="dcp_lines" format="integer" />
+        <attr name="dcp_paragraph_style" format="reference" />
         <attr name="dcp_paragraph_text_size" format="dimension" />
-        <attr name="dcp_lineSpacingExtra" format="dimension" />
+        <attr name="dcp_first_character_style" format="reference" />
+        <attr name="dcp_is_expandable" format="boolean" />
+        <attr name="dcp_collapsing_more_text" format="string" />
+        <attr name="dcp_expanding_more_text" format="string" />
+        <attr name="dcp_more_style" format="reference" />
     </declare-styleable>
 </resources>

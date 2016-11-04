@@ -3,14 +3,13 @@ package com.trung.dropcapparagraph;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 
 /**
  * A {@link android.widget.TextView} which is drawn aligned by it's bottom
  */
-class BottomAlignedCompatTextView extends AppCompatTextView {
+class BottomAlignedCompatTextView extends FontCompatTextView {
 
     private boolean mIsUppercase;
 
@@ -57,6 +56,7 @@ class BottomAlignedCompatTextView extends AppCompatTextView {
         if (attrs != null) {
             TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.BottomAlignedCompatTextView);
             mIsUppercase = a.getBoolean(R.styleable.BottomAlignedCompatTextView_bacptv_is_uppercase, true);
+            a.recycle();
         }
     }
 
@@ -77,8 +77,7 @@ class BottomAlignedCompatTextView extends AppCompatTextView {
         if (mIsUppercase) {
             if (getPaint() != null) {
                 canvas.translate(0, getPaint().descent());
-            }
-            else {
+            } else {
                 canvas.translate(0, getLineHeight() - getTextSize());
             }
         }

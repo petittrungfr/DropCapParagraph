@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dip"
+        android:orientation="horizontal">
+
+        <com.trung.dropcapparagraph.BottomAlignedCompatTextView
+            android:id="@+id/first_character"
+            style="@style/FirstCharacter.TextAppearance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="2dip"
+            app:bacptv_is_uppercase="true"
+            tools:text="g"/>
+
+        <TextView
+            android:id="@+id/right_paragraph"
+            style="@style/Paragraph.TextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/first_character"
+            android:layout_alignBottom="@+id/first_character"
+            android:lines="2"
+            tools:text="Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do eiusmod"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/bottom_paragraph"
+        style="@style/Paragraph.TextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        tools:text="Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do eiusmod"/>
+
+    <TextView
+        android:id="@+id/read_more"
+        style="@style/ReadMore.TextAppearance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="20dip"
+        android:clickable="true"
+        android:text="Lorem ipsum dolor sit amet, con sectetur adipisicing elit, sed do eiusmod"
+        android:visibility="gone"/>
+</LinearLayout>

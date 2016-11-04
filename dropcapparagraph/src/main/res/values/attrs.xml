@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="BottomAlignedCompatTextView">
+        <attr name="bacptv_is_uppercase" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="DropCapParagraph">
+        <attr name="dcp_text" format="string" />
+        <attr name="dcp_first_character_color" format="color|reference" />
+        <attr name="dcp_paragraph_color" format="color|reference" />
+        <attr name="dcp_paragraph_text_size" format="dimension" />
+        <attr name="dcp_lineSpacingExtra" format="dimension" />
+    </declare-styleable>
+</resources>
